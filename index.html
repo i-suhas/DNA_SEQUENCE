@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Sequence Encryption and Decryption</title>
+</head>
+<body>
+    <h1>DNA Sequence Encryption and Decryption</h1>
+    <form method="POST">
+        <label for="sequence">Enter DNA Sequence:</label><br>
+        <input type="text" id="sequence" name="sequence" required><br><br>
+        <label for="key">Enter Encryption Key:</label><br>
+        <input type="text" id="key" name="key" maxlength="4" required><br><br>
+        <input type="submit" value="Encrypt and Decrypt">
+    </form>
+
+    {% if sequence %}
+    <h2>Results:</h2>
+    <p><strong>Original DNA Sequence:</strong> {{ sequence }}</p>
+    <p><strong>Encrypted Sequence:</strong> {{ encrypted_sequence }}</p>
+    <p><strong>Decrypted Sequence:</strong> {{ decrypted_sequence }}</p>
+    {% endif %}
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
