@@ -1,14 +1,6 @@
 from flask import Flask, render_template, request
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
+import string
+import secrets
 
 app = Flask(__name__)
 
@@ -51,10 +43,12 @@ def index():
         key = request.form['key'].upper()
 
         if not validate_dna_sequence(sequence):
-            return render_template('index.html', error='Invalid DNA sequence. Please enter only A, C, G, or T characters.')
+            error = 'Invalid DNA sequence. Please enter only A, C, G, or T characters.'
+            return render_template('index.html', error=error)
 
         if len(key) != 4:
-            return render_template('index.html', error='Invalid key. Please enter 4 characters.')
+            error = 'Invalid key. Please enter 4 characters.'
+            return render_template('index.html', error=error)
 
         substitution_map = create_substitution_map(key)
         encrypted_sequence = encrypt_dna(sequence, substitution_map)
@@ -67,3 +61,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
